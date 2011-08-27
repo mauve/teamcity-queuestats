@@ -16,8 +16,7 @@ p. Queue Statistics Plugin by Mikael Olenfalk is licensed under a "Creative Comm
 
 h2. Building
 
-p. This project uses ant for building, but mostly because I am lazy. I use Eclipse for editing and use ant for deploying and so on. You can build and compile from within
-Eclipse as the project file is correctly setup, but the ant file creates the plugin zip file and copies it to the TeamCity plugin directory.
+p. This project uses ant for building, but mostly because I am lazy. I use Eclipse for editing and use ant for deploying and so on. You can build and compile from within Eclipse as the project file is correctly setup, but the ant file creates the plugin zip file and copies it to the TeamCity plugin directory.
 
 bc.. 
 # in order to compile and deploy the plugin
