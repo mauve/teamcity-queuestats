@@ -8,7 +8,7 @@ The Queue Statistics plugin adds a tab to the Agents overview which shows queue 
 
 h3. Screenshots
 
-!doc/tc-queuestats-1.png(Queue Statistics Plugin)!
+!http://github.com/mauve/teamcity-queuestats/raw/master/doc/tc-queuestats-1.png(Queue Statistics Plugin)!
 
 h2. License
 
