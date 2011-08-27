@@ -1,0 +1,28 @@
+h1. Teamcity Queue Statistics Plugin
+
+Copyright (C) 2011 Mikael Olenfalk <mikael.olenfalk@gmail.com>
+
+h2. Table of Contents
+
+{toc}
+
+h2. Overview
+
+The Queue Statistics plugin adds a tab to the Agents overview which shows queue durations per _agent_ and _build type_.
+
+h2. License
+
+Queue Statistics Plugin by Mikael Olenfalk is licensed under a "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License":http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+
+
+
+
+
+
+
+
+
+
+
+
