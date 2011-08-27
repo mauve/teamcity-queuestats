@@ -25,7 +25,8 @@
 		<javac srcdir="${src}" 
                destdir="${build}"
                debug="${compile.debug}"
-               source="1.5">
+               source="1.5"
+               target="1.5">
 			<classpath refid="compile.classpath"/>
 		</javac>
 	</target>
