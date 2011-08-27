@@ -18,10 +18,6 @@
 		<fileset dir="${tc.home}/lib">
 			<include name="*.jar"/>
 		</fileset>
-		<!--
-			<fileset dir="lib">
-	    	</fileset>
-	    -->
 	</path>
 
 
@@ -55,9 +51,6 @@
   	</target>
 	
 	<target name="deploy" depends="dist">
-
-	    <!-- <copy file="lib/irclib.jar" todir="${dist}"/> -->
-	        
 	    <zip destfile="${dist}/${plugin.name}.zip" basedir="${dist}" includes="*.jar"/>
 	    
 		<copy file="${dist}/${plugin.name}.zip" todir="${deploy.dir}"/>

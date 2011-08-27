@@ -1,10 +1,10 @@
 h1. Teamcity Queue Statistics Plugin
 
-Copyright (C) 2011 Mikael Olenfalk <mikael.olenfalk@gmail.com>
+p. Copyright (C) 2011 Mikael Olenfalk <mikael.olenfalk@gmail.com>
 
 h2. Overview
 
-The Queue Statistics plugin adds a tab to the Agents overview which shows queue durations per _agent_ and _build type_.
+p. The Queue Statistics plugin adds a tab to the Agents overview which shows queue durations per _agent_ and _build type_.
 
 h3. Screenshots
 
@@ -12,7 +12,18 @@ h3. Screenshots
 
 h2. License
 
-Queue Statistics Plugin by Mikael Olenfalk is licensed under a "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License":http://creativecommons.org/licenses/by-nc-sa/3.0/
+p. Queue Statistics Plugin by Mikael Olenfalk is licensed under a "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License":http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+h2. Building
+
+p. This project uses ant for building, but mostly because I am lazy. I use Eclipse for editing and use ant for deploying and so on. You can build and compile from within
+Eclipse as the project file is correctly setup, but the ant file creates the plugin zip file and copies it to the TeamCity plugin directory.
+
+bc.. 
+# in order to compile and deploy the plugin
+ant -Dtc.home=/opt/TeamCity -Dtc.data.dir=/opt/.BuildServer deploy
+
+p. Other targets exists as well, but they are usually not required when editing from within Eclipse.
 
 
 
