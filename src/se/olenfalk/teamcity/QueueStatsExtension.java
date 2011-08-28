@@ -1,7 +1,6 @@
 package se.olenfalk.teamcity;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
