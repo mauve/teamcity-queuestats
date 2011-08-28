@@ -73,5 +73,6 @@
 	<classpathentry kind="lib" path="/Users/mauve/Build/TeamCity/lib/tomcat-i18n-es.jar"/>
 	<classpathentry kind="lib" path="/Users/mauve/Build/TeamCity/lib/tomcat-i18n-fr.jar"/>
 	<classpathentry kind="lib" path="/Users/mauve/Build/TeamCity/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

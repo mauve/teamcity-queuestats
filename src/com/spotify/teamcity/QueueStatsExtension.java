@@ -74,7 +74,7 @@ public class QueueStatsExtension
 				byAgents.put(build.getAgentName(), diff);
 				byBuilds.put(build.getFullName(), diff);
 				
-				return false;
+				return true;
 			}
 		});
 		
