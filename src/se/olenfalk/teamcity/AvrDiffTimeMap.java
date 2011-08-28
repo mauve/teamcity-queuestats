@@ -1,4 +1,4 @@
-package com.spotify.teamcity;
+package se.olenfalk.teamcity;
 
 import java.util.HashMap;
 import java.util.Map;

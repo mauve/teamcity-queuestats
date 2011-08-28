@@ -1,4 +1,4 @@
-package com.spotify.teamcity;
+package se.olenfalk.teamcity;
 
 import java.util.ArrayList;
 import java.util.Collection;
