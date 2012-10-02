@@ -82,12 +82,12 @@ public class QueueStatsExtension
 				Calendar cal = Calendar.getInstance();
 
 				cal.setTime(build.getQueuedDate());
+				long enqueued = cal.getTimeInMillis();
+
+				cal.setTime(build.getServerStartDate());
 				long start = cal.getTimeInMillis();
-				
-				cal.setTime(build.getFinishDate());
-				long stop = cal.getTimeInMillis() - build.getDuration();
-				
-				long diff = stop - start;
+
+				long diff = start - enqueued;
 
 				byAgents.put(build.getAgentName(), diff);
 				byBuilds.put(build.getFullName(), diff);
