@@ -3,23 +3,23 @@
 <%@ taglib prefix="bs" tagdir="/WEB-INF/tags" %>
 <script type="text/javascript">
     function sendTest() {
-    
+
         var nick = $('properties[ircNotifier.Nickname].value');
-        
+
         var gm = $('ircTestMessage').value;
         if(!gm || gm.length ==0) {
             return;
         }
-    
+
         BS.ajaxRequest($('ircTestForm').action, {
             parameters: 'nickname='+ nick.value,
             onComplete: function(transport) {
               if (transport.responseXML) {
                   $('ircTestForm').refresh();
-              }             
+              }
             }
         });
-        return false;        
+        return false;
     }
 </script>
 
@@ -29,13 +29,17 @@
 		<tr>
 			<th>Agent Name</th>
 			<th>Average Queue Time</th>
+			<th>Max Queue Time</th>
+			<th>Number of Samples</th>
 		</tr>
 	</thead>
 	<tbody>
 	<c:forEach var="entry" items="${byAgents}">
 		<tr>
-			<td>${entry.key}</td>
-			<td>${entry.value}</td>
+			<td>${entry.name}</td>
+			<td>${entry.averageQueueTime}</td>
+			<td>${entry.maxQueueTime}</td>
+			<td>${entry.count}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
@@ -47,13 +51,17 @@
 		<tr>
 			<th>Build Name</th>
 			<th>Average Queue Time</th>
+			<th>Max Queue Time</th>
+			<th>Number of Samples</th>
 		</tr>
 	</thead>
 	<tbody>
 	<c:forEach var="entry" items="${byBuilds}">
 		<tr>
-			<td>${entry.key}</td>
-			<td>${entry.value}</td>
+			<td>${entry.name}</td>
+			<td>${entry.averageQueueTime}</td>
+			<td>${entry.maxQueueTime}</td>
+			<td>${entry.count}</td>
 		</tr>
 	</c:forEach>
 	</tbody>
