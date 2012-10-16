@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <project name="queuestats" default="compile" basedir=".">
+	<property name="lib" value="./lib"/>
 	<property name="src" value="./src"/>
 	<property name="build" value="./build"/>
 	<property name="dist" value="./dist"/>
@@ -18,6 +19,12 @@
 		<fileset dir="${tc.home}/lib">
 			<include name="*.jar"/>
 		</fileset>
+		<pathelement path="${lib}/junit-4.10.jar"/>
+	</path>
+
+	<path id="test.classpath">
+	  <path refid="compile.classpath"/>
+	  <pathelement path="${build}"/>
 	</path>
 
 
@@ -26,8 +33,7 @@
                destdir="${build}"
                debug="${compile.debug}"
                source="1.5"
-               target="1.5"
-               excludes="**/*Test.java">
+               target="1.5">
 			<classpath refid="compile.classpath"/>
 		</javac>
 	</target>
@@ -38,13 +44,28 @@
 		<mkdir dir="${dist}"/>
 	</target>
 
-	<target name="dist" depends="compile">
+    <target name="test" depends="compile">
+      <mkdir dir="test-results" />
+      <junit fork="true" printsummary="true" showoutput="true"
+			 maxmemory="1024M" haltonfailure="true">
+		<classpath refid="test.classpath"/>
+        <batchtest todir="test-results">
+          <formatter type="xml" />
+          <fileset dir="${src}">
+            <include name="**/*Test.java"/>
+            <exclude name="**/AllTests.java"/>
+          </fileset>
+        </batchtest>
+      </junit>
+    </target>
+
+	<target name="dist" depends="compile,test">
 
 		<copy todir="${build}/buildServerResources">
 		    <fileset dir="buildServerResources"/>
 	    </copy>
 
-		<jar destfile="${dist}/${plugin.name}.jar" basedir="build">
+		<jar destfile="${dist}/${plugin.name}.jar" basedir="build" excludes="**/*Test.class">
 			<metainf dir="META-INF">
 			   <include name="*"/>
 			</metainf>
@@ -68,5 +89,6 @@
 <!--
 Local Variables:
 tab-width: 4
+indent-tabs-mode: t
 End:
 -->
