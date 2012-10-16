@@ -70,6 +70,7 @@ public class QueueStatsExtension
 		super.fillModel(model, request);
 
 		final StatisticsKeeper byAgents = new StatisticsKeeper();
+		final StatisticsKeeper byProject = new StatisticsKeeper();
 		final StatisticsKeeper byBuilds = new StatisticsKeeper();
 
 		buildHistory.processEntries(new ItemProcessor<SFinishedBuild>() {
@@ -94,6 +95,7 @@ public class QueueStatsExtension
 				long diff = start - enqueued;
 
 				byAgents.addObservation(build.getAgentName(), diff);
+				byProject.addObservation(build.getBuildType().getProjectName(), diff);
 				byBuilds.addObservation(build.getFullName(), diff);
 
 				return true;
@@ -101,6 +103,7 @@ public class QueueStatsExtension
 		});
 
 		model.put("byAgents", byAgents.getStatistics());
+		model.put("byProject", byProject.getStatistics());
 		model.put("byBuilds", byBuilds.getStatistics());
 	}
 }
