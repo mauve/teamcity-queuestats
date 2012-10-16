@@ -14,15 +14,15 @@ public class StatisticsKeeperTest {
 
 		Statistics[] rendered = statisticsKeeper.getStatistics();
 		assertEquals(2, rendered.length);
-		assertEquals("foo", rendered[0].getName());
-		assertEquals("bar", rendered[1].getName());
+		assertEquals("bar", rendered[0].getName());
+		assertEquals("foo", rendered[1].getName());
 
 		statisticsKeeper.addObservation("fastest", 2000);
 
 		rendered = statisticsKeeper.getStatistics();
 		assertEquals(3, rendered.length);
-		assertEquals("fastest", rendered[0].getName());
+		assertEquals("bar", rendered[0].getName());
 		assertEquals("foo", rendered[1].getName());
-		assertEquals("bar", rendered[2].getName());
+		assertEquals("fastest", rendered[2].getName());
 	}
 }

@@ -82,7 +82,8 @@ public class Statistics implements Comparable<Statistics> {
 	public int compareTo(Statistics other) {
 		int result = new Long(averageQueueTime()).compareTo(other.averageQueueTime());
 		if (result != 0) {
-			return result;
+			// Return negative result to get the slowest ones first
+			return -result;
 		}
 
 		return name.compareTo(other.name);
