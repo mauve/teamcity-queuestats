@@ -5,7 +5,7 @@
 	<property name="dist" value="./dist"/>
 	<property name="compile.debug" value="true"/>
 	<property name="plugin.name" value="queuestats" />
-	
+
 	<property name="tc.home" value="/Users/mauve/Build/TeamCity"/>
 	<property name="tc.data.dir" value="/Users/mauve/.BuildServer"/>
 	<property name="tc.lib" value="${tc.home}/webapps/ROOT/WEB-INF/lib"/>
@@ -22,7 +22,7 @@
 
 
 	<target name="compile" depends="init">
-		<javac srcdir="${src}" 
+		<javac srcdir="${src}"
                destdir="${build}"
                debug="${compile.debug}"
                source="1.5"
@@ -39,22 +39,22 @@
 	</target>
 
 	<target name="dist" depends="compile">
-		
+
 		<copy todir="${build}/buildServerResources">
 		    <fileset dir="buildServerResources"/>
 	    </copy>
-		
+
 		<jar destfile="${dist}/${plugin.name}.jar" basedir="build">
 			<metainf dir="META-INF">
 			   <include name="*"/>
 			</metainf>
 		</jar>
-  
-  	</target>
-	
-	<target name="deploy" depends="dist">
+
 	    <zip destfile="${dist}/${plugin.name}.zip" basedir="${dist}" includes="*.jar"/>
-	    
+
+  	</target>
+
+	<target name="deploy" depends="dist">
 		<copy file="${dist}/${plugin.name}.zip" todir="${deploy.dir}"/>
 	</target>
 
@@ -64,4 +64,3 @@
 	</target>
 
 </project>
-
