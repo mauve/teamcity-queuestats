@@ -69,12 +69,17 @@ public class QueueStatsExtension
 	public void fillModel(Map<String, Object> model, HttpServletRequest request) {
 		super.fillModel(model, request);
 
-		final AvrDiffTimeMap byAgents = new AvrDiffTimeMap();
-		final AvrDiffTimeMap byBuilds = new AvrDiffTimeMap();
+		final StatisticsKeeper byAgents = new StatisticsKeeper();
+		final StatisticsKeeper byProject = new StatisticsKeeper();
+		final StatisticsKeeper byBuilds = new StatisticsKeeper();
 
 		buildHistory.processEntries(new ItemProcessor<SFinishedBuild>() {
 			@Override
 			public boolean processItem(SFinishedBuild build) {
+				if (build.getCanceledInfo() != null) {
+					return true;
+				}
+
 				if (build.getQueuedDate().before(cutoff)) {
 					return true;
 				}
@@ -89,14 +94,16 @@ public class QueueStatsExtension
 
 				long diff = start - enqueued;
 
-				byAgents.put(build.getAgentName(), diff);
-				byBuilds.put(build.getFullName(), diff);
+				byAgents.addObservation(build.getAgentName(), diff);
+				byProject.addObservation(build.getBuildType().getProjectName(), diff);
+				byBuilds.addObservation(build.getFullName(), diff);
 
 				return true;
 			}
 		});
 
-		model.put("byAgents", byAgents.getFormattedMap());
-		model.put("byBuilds", byBuilds.getFormattedMap());
+		model.put("byAgents", byAgents.getStatistics());
+		model.put("byProject", byProject.getStatistics());
+		model.put("byBuilds", byBuilds.getStatistics());
 	}
 }
