@@ -30,24 +30,32 @@ public class Statistics implements Comparable<Statistics> {
 	private long totalQueueTime;
 	private long count;
 
-	private static String formatTimeDiff(long diff) {
-        final int ONE_DAY = 1000 * 60 * 60 * 24;
-        final int ONE_HOUR = ONE_DAY / 24;
-        final int ONE_MINUTE = ONE_HOUR / 60;
-        final int ONE_SECOND = ONE_MINUTE / 60;
+	static String formatTimeDiff(long diffMs) {
+        final long ONE_DAY = 1000 * 60 * 60 * 24;
+        final long ONE_HOUR = ONE_DAY / 24;
+        final long ONE_MINUTE = ONE_HOUR / 60;
+        final long ONE_SECOND = ONE_MINUTE / 60;
 
-        String result = new String();
-        result  = (diff / ONE_DAY) + "d ";
-        diff %= ONE_DAY;
+        long days = diffMs / ONE_DAY;
+        diffMs %= ONE_DAY;
 
-        result += (diff / ONE_HOUR) + "h ";
-        diff %= ONE_HOUR;
+        long hours = diffMs / ONE_HOUR;
+        diffMs %= ONE_HOUR;
 
-        result += (diff / ONE_MINUTE) + "m ";
-        diff %= ONE_MINUTE;
+        long minutes = diffMs / ONE_MINUTE;
+        diffMs %= ONE_MINUTE;
 
-        result += (diff / ONE_SECOND) + "s ";
-        return result;
+        long seconds = diffMs / ONE_SECOND;
+
+        if (days > 0) {
+			return String.format("%dd %02d:%02d:%02ds", days, hours, minutes, seconds);
+        } else if (hours > 0) {
+			return String.format("%02d:%02d:%02ds", hours, minutes, seconds);
+        } else if (minutes > 0) {
+			return String.format("__:%02d:%02ds", minutes, seconds);
+        } else {
+			return String.format("__:__:%02ds", seconds);
+        }
 	}
 
 	public String getName() {
